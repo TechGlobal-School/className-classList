@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>className vs classList + Random</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      margin: 20px;
+      display: inline-block;
+      text-align: center;
+      line-height: 100px;
+      color: white;
+      font-weight: bold;
+      transition: all 0.4s ease;
+    }
+
+    .red    { background-color: red; }
+    .blue   { background-color: blue; }
+    .green  { background-color: green; }
+    .circle { border-radius: 50%; }
+    .big    { transform: scale(1.5); }
+    .active { border: 4px solid yellow; }
+  </style>
+</head>
+<body>
+
+  <div id="box1" class="box red">box1</div>
+  <div id="box2" class="box green">box2</div>
+
+  <script>
+    const box1 = document.getElementById('box1');
+    const box2 = document.getElementById('box2');
+
+    // Random number between 0 and 1
+    const rand1 = Math.random();
+    const rand2 = Math.random();
+
+    // If random value > 0.5, apply certain classes
+    if (rand1 > 0.5) {
+      box1.className = 'box blue circle'; // using className
+    } else {
+      box1.className = 'box red'; // fallback if random <= 0.5
+    }
+
+    // Randomly toggle classes
+    if (rand2 > 0.5) {
+      box2.classList.add('active', 'big');
+      box2.classList.remove('green');
+      box2.classList.add('blue');
+    } else {
+      box2.classList.remove('active', 'big');
+      box2.classList.remove('blue');
+      box2.classList.add('green');
+    }
+
+    console.log('box1 random:', rand1.toFixed(2));
+    console.log('box2 random:', rand2.toFixed(2));
+  </script>
+
+</body>
+</html>
